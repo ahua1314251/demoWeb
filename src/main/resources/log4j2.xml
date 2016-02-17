@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="MyApp" packages="">
+	<Appenders>
+		<File name="MyFile" fileName="G:/logs/grab/info.log">
+			<Filters>
+				<ThresholdFilter level="warn" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+				<ThresholdFilter level="info" onMatch="ACCEPT"
+					onMismatch="DENY" />
+			</Filters>
+			<PatternLayout>
+				<Pattern>%d %p [%t] %C message :%m %n</Pattern>
+			</PatternLayout>
+		</File>
+		<File name="FileError" fileName="G:/logs/grab/error.log">
+			<Filters>
+				<ThresholdFilter level="ERROR" onMatch="ACCEPT"
+					onMismatch="DENY" />
+			</Filters>
+			<PatternLayout>
+				<Pattern>%d %p [%t] %C message :%m %n</Pattern>
+			</PatternLayout>
+		</File>
+
+		<File name="FileAll" fileName="G:/logs/grab/grab.log">
+			<PatternLayout>
+				<Pattern>%d %p [%t] %C message :%m %n</Pattern>
+			</PatternLayout>
+		</File>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout>
+				<Pattern>%d %p [%t] %C message :%m %n</Pattern>
+			</PatternLayout>
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="info">
+			<AppenderRef ref="MyFile" />
+<!-- 			<AppenderRef ref="STDOUT" /> -->
+			<AppenderRef ref="FileError" />
+			<AppenderRef ref="FileAll" />
+
+		</Root>
+	</Loggers>
+</Configuration>
