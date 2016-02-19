@@ -97,6 +97,12 @@
 	<artifactId>spring-test</artifactId>
 	<version>4.2.2.RELEASE</version>
     </dependency>
+	<!-- velocity ui -->
+	<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-context-support</artifactId>
+	<version>4.2.2.RELEASE</version>
+    </dependency>
 	
 	
 	<!-- jsoup -->
