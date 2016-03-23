@@ -14,7 +14,7 @@
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
     <!-- 引入jdbc配置文件 -->
     <context:property-placeholder location="classpath:jdbc.properties" />  
-    <context:component-scan base-package="grab.*"></context:component-scan>
+    <context:component-scan base-package="winker.*"></context:component-scan>
     <aop:aspectj-autoproxy />
     <!--创建jdbc数据源 -->  
 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -56,7 +56,7 @@
   
     <!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->  
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
-        <property name="basePackage" value="grab.dal.mapper*" />  
+        <property name="basePackage" value="winker.dal.mapper*" />  
     </bean>  
       
 </beans>  

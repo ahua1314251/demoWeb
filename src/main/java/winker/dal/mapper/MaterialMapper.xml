@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="winker.dal.mapper.MaterialMapper" >
+  <resultMap id="BaseResultMap" type="winker.dal.model.Material" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="MaterialName" property="materialname" jdbcType="VARCHAR" />
+    <result column="MaterialQuantity" property="materialquantity" jdbcType="INTEGER" />
+    <result column="ApplicableModels" property="applicablemodels" jdbcType="VARCHAR" />
+    <result column="MaterialPrice" property="materialprice" jdbcType="VARCHAR" />
+    <result column="Customer" property="customer" jdbcType="VARCHAR" />
+    <result column="Leader" property="leader" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="EntryTime" property="entrytime" jdbcType="TIMESTAMP" />
+    <result column="OutTime" property="outtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MaterialName, MaterialQuantity, ApplicableModels, MaterialPrice, Customer, Leader, 
+    Remark, EntryTime, OutTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from material
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from material
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="winker.dal.model.Material" >
+    insert into material (ID, MaterialName, MaterialQuantity, 
+      ApplicableModels, MaterialPrice, Customer, 
+      Leader, Remark, EntryTime, 
+      OutTime)
+    values (#{id,jdbcType=INTEGER}, #{materialname,jdbcType=VARCHAR}, #{materialquantity,jdbcType=INTEGER}, 
+      #{applicablemodels,jdbcType=VARCHAR}, #{materialprice,jdbcType=VARCHAR}, #{customer,jdbcType=VARCHAR}, 
+      #{leader,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{entrytime,jdbcType=TIMESTAMP}, 
+      #{outtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="winker.dal.model.Material" >
+    insert into material
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="materialname != null" >
+        MaterialName,
+      </if>
+      <if test="materialquantity != null" >
+        MaterialQuantity,
+      </if>
+      <if test="applicablemodels != null" >
+        ApplicableModels,
+      </if>
+      <if test="materialprice != null" >
+        MaterialPrice,
+      </if>
+      <if test="customer != null" >
+        Customer,
+      </if>
+      <if test="leader != null" >
+        Leader,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="entrytime != null" >
+        EntryTime,
+      </if>
+      <if test="outtime != null" >
+        OutTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="materialname != null" >
+        #{materialname,jdbcType=VARCHAR},
+      </if>
+      <if test="materialquantity != null" >
+        #{materialquantity,jdbcType=INTEGER},
+      </if>
+      <if test="applicablemodels != null" >
+        #{applicablemodels,jdbcType=VARCHAR},
+      </if>
+      <if test="materialprice != null" >
+        #{materialprice,jdbcType=VARCHAR},
+      </if>
+      <if test="customer != null" >
+        #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="leader != null" >
+        #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        #{entrytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outtime != null" >
+        #{outtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="winker.dal.model.Material" >
+    update material
+    <set >
+      <if test="materialname != null" >
+        MaterialName = #{materialname,jdbcType=VARCHAR},
+      </if>
+      <if test="materialquantity != null" >
+        MaterialQuantity = #{materialquantity,jdbcType=INTEGER},
+      </if>
+      <if test="applicablemodels != null" >
+        ApplicableModels = #{applicablemodels,jdbcType=VARCHAR},
+      </if>
+      <if test="materialprice != null" >
+        MaterialPrice = #{materialprice,jdbcType=VARCHAR},
+      </if>
+      <if test="customer != null" >
+        Customer = #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="leader != null" >
+        Leader = #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        EntryTime = #{entrytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outtime != null" >
+        OutTime = #{outtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="winker.dal.model.Material" >
+    update material
+    set MaterialName = #{materialname,jdbcType=VARCHAR},
+      MaterialQuantity = #{materialquantity,jdbcType=INTEGER},
+      ApplicableModels = #{applicablemodels,jdbcType=VARCHAR},
+      MaterialPrice = #{materialprice,jdbcType=VARCHAR},
+      Customer = #{customer,jdbcType=VARCHAR},
+      Leader = #{leader,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR},
+      EntryTime = #{entrytime,jdbcType=TIMESTAMP},
+      OutTime = #{outtime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
