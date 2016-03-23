@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menus>
+
+
+<menu id="000000" content="主页" url="/e_resource/material/materialList.xhtml" resourceType="index"  icon="menu-icon fa fa-tachometer">
+
+	   
+</menu>
+
+
+<menu id="010000" content="物料管理" url="#" resourceType="material"  icon="menu-icon fa fa-desktop">
+	   <menu id="010100" content="物料列表" url="/e_resource/material/materialList.xhtml"   resourceType="material"    >
+	   </menu>
+	   <menu id="010200" content="添加物料" url="/e_resource/material/materialAdd.xhtml"   resourceType="material"    >
+	   </menu>
+	   
+</menu>
+
+<menu id="020000" content="系统用户管理" url="#" resourceType="sysUser"  icon="menu-icon fa fa-desktop">
+	   <menu id="020100" content="查看系统用户" url="/e_resource/sysUser/sysUserList.xhtml"   resourceType="sysUser"    >
+	   </menu>
+	   <menu id="020200" content="添加系统用户" url="/e_resource/sysUser/sysUserAdd.xhtml"   resourceType="sysUser"    >
+	   </menu>
+	   
+</menu>
+
+<menu id="030000" content="系统参数" url="#" resourceType="parameter"  icon="menu-icon fa fa-desktop">
+	   <menu id="030100" content="查看系统参数" url="/e_resource/parameter/parameterList.xhtml"   resourceType="parameter"    >
+	   </menu>
+	   <menu id="030200" content="添加系统参数" url="/e_resource/parameter/parameterAdd.xhtml"   resourceType="parameter"    >
+	   </menu>
+	   
+</menu>
+
+
+
+</menus>

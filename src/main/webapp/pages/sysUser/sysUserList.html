@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>物料列表</title>
+
+		<meta name="description" content="overview &amp; stats" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome &table -->
+		<link href="/$domainPath/resources/bootstrap/table/src/bootstrap-table.css" rel="stylesheet">
+        <link rel="stylesheet" href="/$domainPath/resources/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/$domainPath/pages/assets/font-awesome/4.2.0/css/font-awesome.min.css" />
+        
+		<!-- page specific plugin styles -->
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="/$domainPath/pages/assets/fonts/fonts.googleapis.com.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="/$domainPath/pages/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="/$domainPath/pages/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+		<![endif]-->
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="/$domainPath/pages/assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="/$domainPath/pages/assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="/$domainPath/pages/assets/js/html5shiv.min.js"></script>
+		<script src="/$domainPath/pages/assets/js/respond.min.js"></script>
+		<![endif]-->
+
+	</head>
+
+	<body class="no-skin">
+		<div id="navbar" class="navbar navbar-default">
+<!-- /.navbar-container -->
+        #include("material/nav-bar.html")
+<!-- /.navbar-container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div id="sidebar" class="sidebar                  responsive">
+				<script type="text/javascript">
+					try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+				</script>
+
+				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                    #include("material/sidebar.html")
+				</div><!-- /.sidebar-shortcuts -->
+
+				<!-- /.nav-list -->
+                #set( $resourceType = "sysUser" ) 
+                #showMenu($resourceType)
+                <!-- /.nav-list -->
+
+				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+					<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
+
+				<script type="text/javascript">
+					try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+				</script>
+			</div>
+
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="#">主页</a>
+							</li>
+							<li class="active">系统用户管理</li>
+						</ul><!-- /.breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- /.nav-search -->
+					</div>
+
+					<div class="page-content">
+<!-- /.ace-settings-container -->				
+					#include("material/setting.html")
+<!-- /.ace-settings-container -->
+
+						<div class="page-header">
+							<h3>
+								系统用户管理
+								<small>
+									<i class="ace-icon fa fa-angle-double-right"></i>
+									查看系统用户
+								</small>
+							</h3>
+						</div><!-- /.page-header -->
+                        <div id="message">
+                        </div>
+                  
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+										<!-- <h3 class="header smaller lighter blue">物料管理</h3> -->
+<div id="custom-toolbar">
+<form name="form1" id="form1">
+    <div class="form-inline" role="form">
+        <div class="form-group">
+            <div class="input-group">
+            <div class="input-group-addon">物料名称</div>
+                <input class="form-control" id="materialName" name="materialName" placeholder="物料名称" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+            <div class="input-group-addon">适配机型</div>
+            <input class="form-control" id="applicableModels" name="applicableModels" placeholder="适配机型" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+             <div class="input-group">
+            <div class="input-group-addon">厂家</div>
+            <input class="form-control" id="customer" name="customer" placeholder="厂家" type="text">
+            </div>
+           
+        </div>
+        
+        <button onclick="search()" type="button" class="btn btn-white btn-pink">查      询</button>
+    </div>
+    </form>
+</div>
+
+  
+<div class="form-group">
+<div class="col-sm-12">
+<table id="table1" data-toggle="table" data-url="/$domainPath/sysUser/search.ajax"  data-query-params='queryParams' data-toolbar="#custom-toolbar"
+  data-side-pagination="server" data-pagination="true" data-page-list="[5, 10, 20, 50, 100, 200]"
+   data-show-toggle="true" data-show-refresh="true" data-show-export="true" data-show-columns="true" data-show-header="true">
+   
+    <thead>
+    <tr>
+        <th data-field="loginID" data-align="right" data-formatter="urlFormatter" data-sortable="true">登录名</th>
+        <th data-field="userName" data-align="center" data-sortable="true">用户名</th>
+        <th data-field="password" data-sortable="true">密码</th>
+        <th data-field="eamil" data-sortable="true">邮箱</th>
+        <th data-field="sex" data-sortable="true">性别</th>
+        <th data-field="phoneNumber" data-sortable="true">电话号码</th>
+        <th data-field="age" data-sortable="true">年龄</th>
+        <th data-field="img" data-sortable="true">图片</th>
+        <th data-field="qq" data-sortable="true">qq</th>
+        <th data-field="createBy" data-sortable="true">创建人</th>
+        <th data-field="createTime" data-formatter="dateFormatter" data-sortable="true">创建时间</th>
+    </tr>
+    </thead>
+</table>
+</div>
+</div>
+
+   <div class="form-group">
+    <div class="col-sm-12">
+      <a href="sysUserAdd.xhtml" class="btn btn-primary btn-sm pull-right">Add</a>
+    </div>
+  </div>
+  
+</div>
+</div>
+</div>
+</div>
+</div>		
+
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						<!-- /.row -->
+					<!-- /.page-content -->
+
+	<!-- /.main-content -->
+
+			<div class="footer">
+			<!-- #showFooter() -->
+			#include("material/footer.html")
+			</div>
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		<!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script src="/$domainPath/pages/assets/js/jquery.2.1.1.min.js"></script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script src="/$domainPath/pages/assets/js/jquery.1.11.1.min.js"></script>
+<![endif]-->
+
+		<!--[if !IE]> -->
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='/$domainPath/pages/assets/js/jquery.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='/$domainPath/pages/assets/js/jquery1x.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='/$domainPath/pages/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="/$domainPath/pages/assets/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="/$domainPath/pages/assets/js/excanvas.min.js"></script>
+		<![endif]-->
+		<script src="/$domainPath/pages/assets/js/jquery-ui.custom.min.js"></script>
+		<script src="/$domainPath/pages/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/$domainPath/pages/assets/js/jquery.easypiechart.min.js"></script>
+		<script src="/$domainPath/pages/assets/js/jquery.sparkline.min.js"></script>
+		<script src="/$domainPath/pages/assets/js/jquery.flot.min.js"></script>
+		<script src="/$domainPath/pages/assets/js/jquery.flot.pie.min.js"></script>
+		<script src="/$domainPath/pages/assets/js/jquery.flot.resize.min.js"></script>
+
+		<!-- ace scripts -->
+		<script src="/$domainPath/pages/assets/js/ace-elements.min.js"></script>
+		<script src="/$domainPath/pages/assets/js/ace.min.js"></script>
+<!--         <script src="./table.js"></script> -->
+		<!-- inline scripts related to this page -->
+
+	</body>
+			<!-- bootstrap datatable -->
+
+		<script src="/$domainPath/resources/js/core.js"></script>
+		<script src="/$domainPath/resources/bootstrap/table/src/extensions/export/tableExport/tableExport.js"></script>
+		<script src="/$domainPath/resources/bootstrap/table/src/extensions/export/tableExport/jquery.base64.js"></script>
+<!-- 		<script src="http://wenzhixin.net.cn/p/bootstrap-table/docs/assets/table-export/tableExport.js"></script>
+		<script src="http://wenzhixin.net.cn/p/bootstrap-table/docs/assets/table-export/jquery.base64.js"></script> -->
+		<script src="/$domainPath/resources/bootstrap/table/src/bootstrap-table.js"></script>
+		<script src="/$domainPath/resources/bootstrap/table/src/locale/bootstrap-table-zh-CN.js"></script>
+		<script src="/$domainPath/resources/bootstrap/table/src/extensions/export/bootstrap-table-export.js"></script>
+		<script>
+	function dateFormatter(value) {
+		var date = new Date(parseInt(value));
+	    return	date.format("yyyy-mm-dd");
+	}
+	function urlFormatter(value,row) {
+		var result="<a href='sysUserView.xhtml?loginID="+row.loginID+"'>"+value+"</a>";
+		
+	    return	result;
+	}
+	
+	
+	
+	function search(){
+		$("#table1").bootstrapTable('refresh');
+	}
+	
+	function queryParams(para) {
+		$.extend(para, $('#form1').serializeJson());
+		return para ;
+	}
+	
+    (function($){  
+            $.fn.serializeJson=function(){  
+                var serializeObj={};  
+                $(this.serializeArray()).each(function(){  
+                    serializeObj[this.name]=this.value;  
+                });  
+                return serializeObj;  
+            };  
+        })(jQuery);  
+	</script>
+</html>
+			
