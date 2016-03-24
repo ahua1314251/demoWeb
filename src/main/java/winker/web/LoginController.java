@@ -1,20 +1,25 @@
 package winker.web;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
-import resource.org.bean.user.Sys_user;
+import winker.dal.model.WinkerUser;
+import winker.service.UserWinkerService;
 
 @Component
 @RequestMapping("/")
 public class LoginController {
-
+	private static final Logger LOGGER  = LogManager.getLogger(LoginController.class);
+	@Autowired
+	UserWinkerService userWinkerService;
 	@RequestMapping("/")	
 	public String index() {
-		return "redirect:/login.xhtml ";
+		return "login";
 	}
 	
 	@RequestMapping(value = "/login")
@@ -22,12 +27,13 @@ public class LoginController {
 		return "login";
 	}
 	
-	@RequestMapping({"/loginValidate.do"})	
-	public String loginValidate(Sys_user user,RedirectAttributesModelMap mod,HttpServletRequest xx) {
+	@RequestMapping(value={"/loginValidate.do"},method = RequestMethod.POST )	
+	public String loginValidate(WinkerUser user,RedirectAttributesModelMap mod) {
 	//	Constants.DEFAULT_CHARACTER_ENCODING="utf-8";
-		if(userService.userValidate(user))
+		LOGGER.info("user----:{}--{}",user.getLoginId(),user.getPassword());
+		if(userWinkerService.userValidate(user))
 		{
-		return "redirect:/material/materialList.xhtml";
+		return "redirect:/sysUser/sysUserList.xhtml";
 		}
 		mod.addFlashAttribute("message", "用户名密码错误");
 		return "redirect:login.xhtml";
