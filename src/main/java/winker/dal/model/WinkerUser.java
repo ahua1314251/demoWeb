@@ -23,6 +23,20 @@ public class WinkerUser {
 
     private Integer departmentId;
 
+    private String picPath;
+
+    private Long qq;
+
+    private String mobile;
+
+    private Long createUserId;
+
+    private Date createTime;
+
+    private Long updateUserId;
+
+    private Date updateTime;
+
     public Integer getId() {
         return id;
     }
@@ -101,5 +115,61 @@ public class WinkerUser {
 
     public void setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
+    }
+
+    public String getPicPath() {
+        return picPath;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath == null ? null : picPath.trim();
+    }
+
+    public Long getQq() {
+        return qq;
+    }
+
+    public void setQq(Long qq) {
+        this.qq = qq;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile == null ? null : mobile.trim();
+    }
+
+    public Long getCreateUserId() {
+        return createUserId;
+    }
+
+    public void setCreateUserId(Long createUserId) {
+        this.createUserId = createUserId;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Long getUpdateUserId() {
+        return updateUserId;
+    }
+
+    public void setUpdateUserId(Long updateUserId) {
+        this.updateUserId = updateUserId;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

@@ -5906,7 +5906,7 @@ body.mob-safari .sidebar.sidebar-fixed {
 .footer.footer-fixed+.btn-scroll-up {
 	z-index: 999
 }
-
+/* 
 .btn {
 	display: inline-block;
 	color: #FFF !important;
@@ -7700,7 +7700,7 @@ button.btn:active {
 	-webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, .08) inset !important;
 	box-shadow: 0 0 0 1px rgba(0, 0, 0, .08) inset !important
 }
-
+ */
 .label {
 	border-radius: 0;
 	text-shadow: none;
