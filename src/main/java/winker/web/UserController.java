@@ -26,6 +26,7 @@ public class UserController {
 	@RequestMapping("sysUserList.xhtml")	
 	public String userListPage() {
 		return "sysUser/sysUserList";
+
 	}
 	
 	

@@ -3,7 +3,7 @@ package winker.web;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 import winker.dal.model.WinkerUser;
 import winker.service.UserWinkerService;
 
-@Component
+@Controller
 @RequestMapping("/")
 public class LoginController {
 	private static final Logger LOGGER  = LogManager.getLogger(LoginController.class);
