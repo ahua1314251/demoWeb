@@ -9,6 +9,8 @@ public class PageParameter {
 	private int currentPage;
 	private int totalPage;
 	private int pageSize;
+	private int limit;
+	private int offset;
 
 	public int getTotalElements() {
 		return totalElements;

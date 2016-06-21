@@ -30,13 +30,13 @@ import winker.core.interceptor.bean.PageParameter;
 
 /**
  * created by tom on 15/10/08 通过拦截<code>StatementHandler</code>的
- * <code>prepare</code>方法，重写sql语句实现物理分页。 老规矩，签名里要拦截的类型只能是接口。 专门为bootstrap设计
+ * <code>prepare</code>方法，重写sql语句实现物理分页。 老规矩，签名里要拦截的类型只能是接口。 适合普通插件
  * mybatis 分页拦截器
  *
  */
 @Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class }) })
-public class PaginationInterceptor implements Interceptor {
-	private static final Log logger = LogFactory.getLog(PaginationInterceptor.class);
+public class PaginationInterceptor2 implements Interceptor {
+	private static final Log logger = LogFactory.getLog(PaginationInterceptor2.class);
 	private static final ObjectFactory DEFAULT_OBJECT_FACTORY = new DefaultObjectFactory();
 	private static final ObjectWrapperFactory DEFAULT_OBJECT_WRAPPER_FACTORY = new DefaultObjectWrapperFactory();
 	private static final ReflectorFactory DEFAULT_REFLECTOR_FACTORY = new DefaultReflectorFactory();

@@ -36,5 +36,9 @@ public class UserController {
 		return "sysUser/sysUserList";
 	}
 	
-	
+	@RequestMapping("sysUserAdd.xhtml")	
+	public String sysUserAddPage() {
+		return "sysUser/sysUserAdd";
+
+	}
 }

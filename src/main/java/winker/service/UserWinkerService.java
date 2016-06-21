@@ -24,4 +24,15 @@ public class UserWinkerService {
 		return false;
 	}
 	
+	
+	public boolean getUserListByPage(WinkerUser user){
+		Integer result = winkerUserMapper.getUserList(user);
+		if(result!=null){
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
 }

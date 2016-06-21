@@ -20,7 +20,6 @@
     <tx:annotation-driven transaction-manager="cmsTansactionManager" proxy-target-class="true" />
     <tx:annotation-driven transaction-manager="winkerTansactionManager" proxy-target-class="true" />
     
-    <import resource="classpath:spring-dal-cms.xml"/>
     <import resource="classpath:spring-dal-winker.xml"/>
     
 </beans>  
