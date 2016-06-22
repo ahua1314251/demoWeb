@@ -26,7 +26,7 @@ import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
 import org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory;
 import org.apache.ibatis.session.RowBounds;
 
-import winker.core.interceptor.bean.PageParameter;
+import winker.core.bean.PageParameter;
 
 /**
  * created by tom on 15/10/08 通过拦截<code>StatementHandler</code>的
@@ -135,9 +135,9 @@ public class PaginationInterceptor implements Interceptor {
 
 	public StringBuilder buildPageSqlForMysql(String sql, PageParameter page) {
 		StringBuilder pageSql = new StringBuilder(100);
-		String beginrow = String.valueOf((page.getCurrentPage() - 1) * page.getPageSize());
+		
 		pageSql.append(sql);
-		pageSql.append(" limit " + beginrow + "," + page.getPageSize());
+		pageSql.append(" limit " + page.getOffset() + "," + page.getLimit());
 		return pageSql;
 	}
 
@@ -192,6 +192,7 @@ public class PaginationInterceptor implements Interceptor {
 			} catch (SQLException e) {
 				logger.error("Ignore this exception", e);
 			}
+			
 		}
 	}
 

@@ -233,10 +233,20 @@
   </update>
   
   
+  
+  
+  
   <select id="validateUserByLoginIdAndPwd" resultType = "java.lang.Integer"  parameterType="winker.dal.model.WinkerUser"  >
     select 
     1
     from winker_User
     where Login_ID = #{loginId,jdbcType=VARCHAR} and Password = #{password,jdbcType=VARCHAR} limit 1
   </select>
+  
+  <select id="getUserListByPage" resultType = "winker.dal.model.WinkerUser"  parameterType="winker.dal.criteria.UserCriteria"  >
+     select 
+    <include refid="Base_Column_List" />
+    from winker_User
+  </select>
+  
 </mapper>

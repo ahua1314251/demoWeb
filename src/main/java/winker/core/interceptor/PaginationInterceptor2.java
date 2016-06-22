@@ -26,7 +26,7 @@ import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
 import org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory;
 import org.apache.ibatis.session.RowBounds;
 
-import winker.core.interceptor.bean.PageParameter;
+import winker.core.bean.PageParameter;
 
 /**
  * created by tom on 15/10/08 通过拦截<code>StatementHandler</code>的

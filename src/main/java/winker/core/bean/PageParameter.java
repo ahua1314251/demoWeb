@@ -1,4 +1,4 @@
-package winker.core.interceptor.bean;
+package winker.core.bean;
 
 /**
  * 
@@ -8,6 +8,7 @@ public class PageParameter {
 	private int totalElements;
 	private int currentPage;
 	private int totalPage;
+	private int total;
 	private int pageSize;
 	private int limit;
 	private int offset;
@@ -18,6 +19,7 @@ public class PageParameter {
 
 	public void setTotalElements(int totalElements) {
 		this.totalElements = totalElements;
+		this.total = totalElements;
 	}
 
 	public int getCurrentPage() {
@@ -42,6 +44,30 @@ public class PageParameter {
 
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
+	}
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
 	}
 
 }

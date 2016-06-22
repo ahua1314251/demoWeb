@@ -2,6 +2,7 @@ package winker.dal.mapper;
 
 import java.util.List;
 
+import winker.dal.criteria.UserCriteria;
 import winker.dal.model.WinkerUser;
 
 public interface WinkerUserMapper {
@@ -13,7 +14,7 @@ public interface WinkerUserMapper {
 
     WinkerUser selectByPrimaryKey(Integer id);
     
-    List<WinkerUser> getUserListByPage(WinkerUser record);
+    List<WinkerUser> getUserListByPage(UserCriteria criteria);
 
     int updateByPrimaryKeySelective(WinkerUser record);
 

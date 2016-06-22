@@ -27,6 +27,10 @@
   <property name="minEvictableIdleTimeMillis" value="3600000" />    
 </bean>
   
+   <!-- mybatis 分页拦截器 -->
+     <bean id="paginationInterceptor" class="winker.core.interceptor.PaginationInterceptor">
+        <property name="dialect" value="mysql"/>
+    </bean> 
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  
     <bean id="winkerTransactionManager"  
         class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
@@ -36,6 +40,11 @@
     <!-- 创建SqlSessionFactory，同时指定数据源 -->  
     <bean id="winkerSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
         <property name="dataSource" ref="winkerDataSource" />  
+        <property name="plugins">
+            <array>
+                <ref bean="paginationInterceptor" />
+            </array>
+        </property>
     </bean>  
       
   
@@ -43,10 +52,8 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
         <property name="basePackage" value="winker.dal.mapper*" />  
         <property name="sqlSessionFactoryBeanName" value="winkerSqlSessionFactory"/>
+        
     </bean>  
        
-     <!-- mybatis 分页拦截器 -->
-     <bean id="paginationInterceptor" class="winker.core.interceptor.PaginationInterceptor">
-        <property name="dialect" value="mysql"/>
-    </bean> 
+    
 </beans>

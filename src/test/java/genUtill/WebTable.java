@@ -6,12 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 import winker.dal.model.Material;
+import winker.dal.model.WinkerUser;
 
 public class WebTable {
 
 	
 	public static void main(String[] args){
-		generateDbTableByClazz(Material.class);
+		generateDbTableByClazz(WinkerUser.class);
 	}
 	
 	

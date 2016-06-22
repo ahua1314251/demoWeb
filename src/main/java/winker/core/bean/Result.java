@@ -1,7 +1,9 @@
-package winker.core.interceptor.bean;
+package winker.core.bean;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 结果类<br>
@@ -35,6 +37,9 @@ public class Result<T> extends PageParameter {
 	 */
 	@JsonProperty("data")
 	private T data;
+	
+	@JsonProperty("rows")
+	private T rows;
 
 	public Result<T> generateCodeAndMsgInfo(String code, String msg) {
 		this.setErrorCode(code);
@@ -89,4 +94,13 @@ public class Result<T> extends PageParameter {
 		}
 		errorList.add(errorMsg);
 	}
+
+	public T getRows() {
+		return rows;
+	}
+
+	public void setRows(T rows) {
+		this.rows = rows;
+	}
+	
 }
