@@ -9,12 +9,12 @@
     <property name="url" value="${jdbc.mysql.winker.url}"/>
     <property name="username" value="${jdbc.mysql.winker.username}"/>
     <property name="password" value="${jdbc.mysql.winker.password}"/>
-    <property name="initialSize" value="10" />  
-  <!-- 连接池的最大值 -->  
-  <property name="maxActive" value="10" />  
-  <!-- 最大空闲值.当经过一个高峰时间后，连接池可以慢慢将已经用不到的连接慢慢释放一部分，一直减少到maxIdle为止 -->  
-  <property name="maxIdle" value="10" />  
-  <!-- 最小空闲值.当空闲的连接数少于阀值时，连接池就会预申请去一些连接，以免洪峰来时来不及申请 -->  
+    <property name="initialSize" value="2" />  
+  <!-- 连接池的最大值 10-->  
+  <property name="maxActive" value="2" />  
+  <!-- 最大空闲值.当经过一个高峰时间后，连接池可以慢慢将已经用不到的连接慢慢释放一部分，一直减少到maxIdle为止  10-->  
+  <property name="maxIdle" value="2" />  
+  <!-- 最小空闲值.当空闲的连接数少于阀值时，连接池就会预申请去一些连接，以免洪峰来时来不及申请 5 -->  
   <property name="minIdle" value="1" />  
   <!--#给出一条简单的sql语句进行验证-->  
 <!--   <property name="validationQuery" value="select getdate()" />   -->
@@ -27,10 +27,7 @@
   <property name="minEvictableIdleTimeMillis" value="3600000" />    
 </bean>
   
-   <!-- mybatis 分页拦截器 -->
-     <bean id="paginationInterceptor" class="winker.core.interceptor.PaginationInterceptor">
-        <property name="dialect" value="mysql"/>
-    </bean> 
+   
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  
     <bean id="winkerTransactionManager"  
         class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
@@ -39,10 +36,11 @@
   
     <!-- 创建SqlSessionFactory，同时指定数据源 -->  
     <bean id="winkerSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
-        <property name="dataSource" ref="winkerDataSource" />  
+        <property name="dataSource" ref="winkerDataSource" /> 
+       <!--    <property name="typeAliasesPackage" value="winker.core.interceptor"/>    -->
         <property name="plugins">
             <array>
-                <ref bean="paginationInterceptor" />
+                <ref bean="paginationInterceptor"/>
             </array>
         </property>
     </bean>  
@@ -55,5 +53,9 @@
         
     </bean>  
        
+    <!-- mybatis 分页拦截器 -->
+     <bean id="paginationInterceptor" class="winker.core.interceptor.PaginationInterceptor">
+        <property name="dialect" value="mysql"/>
+    </bean> 
     
 </beans>

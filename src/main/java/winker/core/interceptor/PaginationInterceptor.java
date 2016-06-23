@@ -77,8 +77,7 @@ public class PaginationInterceptor implements Interceptor {
 		}
 		// 只重写需要分页的sql语句。通过MappedStatement的ID匹配，默认重写以Page结尾的
 		// MappedStatement的sql
-		if (mappedStatement.getId().matches(pageSqlId) && page != null && page.getCurrentPage() > 0
-				&& page.getPageSize() > 0) {
+		if (mappedStatement.getId().matches(pageSqlId) && page != null && page.getLimit() > 0) {
 			BoundSql boundSql = (BoundSql) metaStatementHandler.getValue("delegate.boundSql");
 			Object parameterObject = boundSql.getParameterObject();
 			if (parameterObject == null) {
@@ -177,8 +176,8 @@ public class PaginationInterceptor implements Interceptor {
 				totalCount = rs.getInt(1);
 			}
 			page.setTotalElements(totalCount);
-			int totalPage = totalCount / page.getPageSize() + ((totalCount % page.getPageSize() == 0) ? 0 : 1);
-			page.setTotalPage(totalPage);
+//			int totalPage = totalCount / page.getPageSize() + ((totalCount % page.getPageSize() == 0) ? 0 : 1);
+//			page.setTotalPage(totalPage);
 		} catch (SQLException e) {
 			logger.error("Ignore this exception", e);
 		} finally {

@@ -5,7 +5,7 @@ import java.util.Date;
 public class WinkerUser {
     private Integer id;
 
-    private String username;
+    private String userName;
 
     private String password;
 
@@ -15,6 +15,8 @@ public class WinkerUser {
 
     private String address;
 
+    private String picPath;
+
     private Boolean sex;
 
     private Date birthday;
@@ -23,9 +25,7 @@ public class WinkerUser {
 
     private Integer departmentId;
 
-    private String picPath;
-
-    private Long qq;
+    private String qq;
 
     private String mobile;
 
@@ -45,12 +45,12 @@ public class WinkerUser {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getPassword() {
@@ -85,6 +85,14 @@ public class WinkerUser {
         this.address = address == null ? null : address.trim();
     }
 
+    public String getPicPath() {
+        return picPath;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath == null ? null : picPath.trim();
+    }
+
     public Boolean getSex() {
         return sex;
     }
@@ -117,20 +125,12 @@ public class WinkerUser {
         this.departmentId = departmentId;
     }
 
-    public String getPicPath() {
-        return picPath;
-    }
-
-    public void setPicPath(String picPath) {
-        this.picPath = picPath == null ? null : picPath.trim();
-    }
-
-    public Long getQq() {
+    public String getQq() {
         return qq;
     }
 
-    public void setQq(Long qq) {
-        this.qq = qq;
+    public void setQq(String qq) {
+        this.qq = qq == null ? null : qq.trim();
     }
 
     public String getMobile() {
