@@ -1,0 +1,131 @@
+
+<!DOCTYPE>
+<html>
+<head>
+<script src="resources/jquery/jquery-1.11.2.min.js"></script>
+<script src="common.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+th {
+font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+color: #4f6b72;
+border-right: 1px solid #C1DAD7;
+border-bottom: 1px solid #C1DAD7;
+border-top: 1px solid #C1DAD7;
+letter-spacing: 2px;
+text-transform: uppercase;
+text-align: left;
+padding: 6px 6px 6px 12px;
+background: #CAE8EA url(images/bg_header.jpg) no-repeat;
+}
+</style>
+</head>
+<body>
+<h2>测试页面</h2>
+<div align="center">
+<form action="lolth/roaming.do" id="form1">
+
+
+<div style="width:600px;text-align: left""> <span>查询城市</span><span id="container"></span> </div>
+<div style="width:600px;text-align: left"> <span>查询类别</span> <input  name="query" type="text" value="餐饮"> </div>
+
+<div><input id="submit" type="button" value="启动搜索" /></div>
+</form>
+
+
+<div id="statuShow">
+
+    <table id="statuTable"  url ="" style ="border=2; width:600px">  
+                <thead>  
+                    <tr>  
+                        <th data-field="areaName" area-field="area_name"  data-class="" style='width:20%;'>城市</th>  
+                        <th data-field="query" style='width:20%;'>查询条件</th>                          
+                    </tr>  
+                </thead>  
+                <tbody id="tBody">  
+                    
+                 </tbody>  
+     </table>                      
+</div>
+
+<div>
+
+</div>
+
+<script>
+var kk = [{"areaName":"123","query":"1232"},{"areaName":"123","query":"1232"}];
+
+
+var	MyTable = {
+    option:'',
+    initTable :function(option){
+    myTable = this;
+    myTable.option = option;	
+    myTable.loadMyTable(kk);	
+    },
+	loadMyTable :function(objects){
+	       $.each(objects, function(index,item){
+	       	    var result="<tr>";
+	             //克隆tr，每次遍历都可以产生新的tr       
+	               option.table.find("th").each(function(){
+	               	if($(this).attr("area-field")==undefined)
+	               		{
+	               		result=result+"<td>"+item[$(this).attr("data-field")]+"</td> ";
+	               		}
+	               	else{
+	               	result=result+"<td>"+item[$(this).attr("data-field")]+"</td> ";
+	               	}
+	               	//alert($(this).attr("data-field"));
+	               });
+	               result=result+"</tr>";
+	               
+	            $("#tBody").append(result);
+	        });//end $each  
+	 //       $("#cloneTr").hide();//隐藏id=clone的tr，因为该tr中的td没有数据，不隐藏起来会在生成的table第一行显示一个空行    
+		}
+		
+	}
+		
+
+		
+
+var kk = [{"areaName":"123","query":"1232"},{"areaName":"123","query":"1232"}];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// JSON 排序函数
+function getSortFun(order, sortBy) {
+    var ordAlpah = (order == 'asc') ? '>' : '<';
+    var sortFun = new Function('a', 'b', 'return a.' + sortBy + ordAlpah + 'b.' + sortBy + '?1:-1');
+    return sortFun;
+}
+
+</script>
+
+</div>
+</body>
+</html>
