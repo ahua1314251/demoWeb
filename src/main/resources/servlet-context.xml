@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 	<context:property-placeholder location="classpath:jdbc.properties" />
-	<context:component-scan base-package="winker"></context:component-scan>
+	<context:component-scan base-package="winker,shopping"></context:component-scan>
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/resources/"
 		cache-period="31556926" />

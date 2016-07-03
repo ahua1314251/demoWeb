@@ -1,0 +1,96 @@
+
+.search_box a, .search_box div {
+    font-family: "微软雅黑";
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+.search_box li {
+    list-style: outside none none;
+    position: relative;
+    z-index: 111;
+}
+.search_box a {
+    text-decoration: none;
+}
+.search_box {
+    position: relative;
+    width: 690px;
+}
+.search_box input {
+    border: 1px solid #535353;
+    float: right;
+    font-size: 12px;
+    height: 35px;
+    line-height: 34px;
+    outline: 0 none;
+    padding: 0 10px;
+    width: 603px;
+}
+.search_box img {
+    float: right;
+}
+.search_box ul {
+    float: right;
+    position: absolute;
+    right: 62px;
+    top: 11px;
+}
+.search_box ul li {
+    float: left;
+}
+.search_box ul li a {
+    color: #bdbdbd;
+    font-size: 12px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+.search_box ul li a:hover {
+    background: #d9d8d6 none repeat scroll 0 0;
+    color: #fff;
+}
+.think_search_header img {
+    cursor: pointer;
+}
+a.serch_box_img {
+    background: rgba(0, 0, 0, 0) url("http://pic.shop.lenovo.com.cn/g1/M00/00/76/CmBZEFZWvNiAUa4zAAAGUlPCg-4527.jpg") repeat scroll 0 0;
+    cursor: pointer;
+    display: block;
+    float: right;
+    height: 37px;
+    width: 61px;
+}
+#suggestContainer {
+    background: #000 none repeat scroll 0 0;
+    color: #f1f1f1;
+    display: none;
+    left: 4px;
+    position: absolute;
+    top: 37px;
+    width: 625px;
+    z-index: 10000101;
+}
+#suggestContainer ul {
+    float: none;
+    margin: 0;
+    padding: 0;
+    position: static;
+}
+#suggestContainer li {
+    cursor: pointer;
+    float: none;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    padding-left: 10px;
+    text-align: left;
+    white-space: nowrap;
+}
+#suggestContainer li a {
+    color: #f1f1f1;
+    display: block;
+}
+#suggestContainer li.hover a, #suggestContainer li.hover a:hover {
+    color: #b32e31;
+}

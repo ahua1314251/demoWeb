@@ -14,13 +14,13 @@
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
     <!-- 引入jdbc配置文件 -->
     <context:property-placeholder location="classpath:jdbc.properties" />  
-    <context:component-scan base-package="winker.*"></context:component-scan>
+    <context:component-scan base-package="winker.*,shopping.*"></context:component-scan>
     <aop:aspectj-autoproxy />
   <!-- 可通过注解控制事务 -->  
-    <tx:annotation-driven transaction-manager="cmsTansactionManager" proxy-target-class="true" />
+<!--     <tx:annotation-driven transaction-manager="cmsTansactionManager" proxy-target-class="true" /> -->
     <tx:annotation-driven transaction-manager="winkerTansactionManager" proxy-target-class="true" />
     
-    <import resource="classpath:spring-dal-cms.xml"/>
+<!--     <import resource="classpath:spring-dal-cms.xml"/> -->
     <import resource="classpath:spring-dal-winker.xml"/>
     
 </beans>  
