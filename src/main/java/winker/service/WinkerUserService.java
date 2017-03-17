@@ -2,6 +2,7 @@ package winker.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import winker.dal.mapper.WinkerUserMapper;
 import winker.dal.model.WinkerUser;
@@ -18,6 +19,12 @@ public class WinkerUserService {
 			return true;
 		}
 		return false;
+	}
+	
+	@Transactional(value="winkerTransactionManager")
+	public void updateUser(WinkerUser user) {
+		Integer result = userMapper.updateByPrimaryKeySelective(user);
+//		throw new RuntimeException("adas");
 	}
 
 }

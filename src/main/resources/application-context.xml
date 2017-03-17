@@ -15,7 +15,7 @@
     <!-- 引入jdbc配置文件 -->
     <context:property-placeholder location="classpath:jdbc.properties" />  
     <context:component-scan base-package="winker.*"></context:component-scan>
-    <aop:aspectj-autoproxy />
+    <aop:aspectj-autoproxy  proxy-target-class="false"/>
   <!-- 可通过注解控制事务 -->  
     <!-- <tx:annotation-driven transaction-manager="cmsTansactionManager" proxy-target-class="true" /> -->
     <tx:annotation-driven transaction-manager="winkerTansactionManager" proxy-target-class="true" />
