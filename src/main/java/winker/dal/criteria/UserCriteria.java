@@ -1,8 +1,8 @@
 package winker.dal.criteria;
 
-import winker.core.bean.PageParameter;
+import winker.core.bean.BasePageParameter;
 
-public class UserCriteria extends PageParameter{
+public class UserCriteria extends BasePageParameter{
 
 	
 	

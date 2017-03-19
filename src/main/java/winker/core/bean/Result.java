@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * 
  */
-public class Result<T> extends PageParameter {
+public class Result<T> extends BasePageParameter {
 
 	private List<String> errorList;
 

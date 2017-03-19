@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import winker.dal.mapper.WinkerUserMapper;
 import winker.dal.model.WinkerUser;
@@ -24,18 +26,22 @@ public class Mybatis {
 	
 //	@Transactional(value="winkerTransactionManager")
 	@Test
-	public  void test(){
+	public  void test() throws Exception{
 		WinkerUser record = new WinkerUser();
-		record.setId(13);
+		record.setId(11L);
 		record.setLoginId("12312");
 		record.setEmail("23123123");
 		record.setPassword("123123");
 		record.setUserName("shanfu.liu18");
 		record.setAddress("qweqw");
 		record.setUpdateTime(new Date());
-		winkerUserService.updateUser(record);
+		winkerUserService.updateUser(record,1234);
 
-	
+//		record.setId(12L);
+//		record.setUpdateTime(new Date());
+//		winkerUserService.updateUser(record,5678);
+//		throw new Exception("exception");
+//		
 		
 	}
 	

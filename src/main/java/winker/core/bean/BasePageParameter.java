@@ -4,7 +4,7 @@ package winker.core.bean;
  * 
  * Created by tom on 15/10/09 基础类 前台table插件基础参数 其他查询条件可集成该类
  */
-public class PageParameter {
+public class BasePageParameter {
 	private int totalElements;
 	private int currentPage;
 	private int totalPage;

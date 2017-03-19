@@ -22,8 +22,11 @@ public class WinkerUserService {
 	}
 	
 	@Transactional(value="winkerTransactionManager")
-	public void updateUser(WinkerUser user) {
+	public void updateUser(WinkerUser user,int abcde ) {
+		@SuppressWarnings("unused")
 		Integer result = userMapper.updateByPrimaryKeySelective(user);
+		user.setId(user.getId()+1);
+		 result = userMapper.updateByPrimaryKeySelective(user);
 //		throw new RuntimeException("adas");
 	}
 

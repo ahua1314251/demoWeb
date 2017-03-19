@@ -18,7 +18,7 @@
     <aop:aspectj-autoproxy  proxy-target-class="false"/>
   <!-- 可通过注解控制事务 -->  
     <!-- <tx:annotation-driven transaction-manager="cmsTansactionManager" proxy-target-class="true" /> -->
-    <tx:annotation-driven transaction-manager="winkerTansactionManager" proxy-target-class="true" />
+    <tx:annotation-driven transaction-manager="winkerTansactionManager" proxy-target-class="false" order="2"/>
     
     <import resource="classpath:spring-dal-winker.xml"/>
     

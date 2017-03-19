@@ -2,8 +2,10 @@ package winker.dal.model;
 
 import java.util.Date;
 
-public class WinkerUser {
-    private Integer id;
+import winker.sharding.BaseShardingParam;
+
+public class WinkerUser extends BaseShardingParam{
+    private Long id;
 
     private String userName;
 
@@ -37,11 +39,11 @@ public class WinkerUser {
 
     private Date updateTime;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

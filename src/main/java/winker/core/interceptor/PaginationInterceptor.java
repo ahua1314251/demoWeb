@@ -26,7 +26,7 @@ import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
 import org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory;
 import org.apache.ibatis.session.RowBounds;
 
-import winker.core.bean.PageParameter;
+import winker.core.bean.BasePageParameter;
 
 /**
  * created by tom on 15/10/08 通过拦截<code>StatementHandler</code>的
@@ -41,7 +41,8 @@ public class PaginationInterceptor implements Interceptor {
 	private static final ObjectWrapperFactory DEFAULT_OBJECT_WRAPPER_FACTORY = new DefaultObjectWrapperFactory();
 	private static final ReflectorFactory DEFAULT_REFLECTOR_FACTORY = new DefaultReflectorFactory();
 	private static final String defaultDialect = "mysql";
-	private static final String defaultPageSqlId = ".*Page$";
+//	private static final String defaultPageSqlId = ".*Page$";
+	private static final String defaultPageSqlId = ".*";
 	private String dialect;
 	private String pageSqlId;
 
@@ -71,10 +72,10 @@ public class PaginationInterceptor implements Interceptor {
 			pageSqlId = defaultPageSqlId;
 		}
 		MappedStatement mappedStatement = (MappedStatement) metaStatementHandler.getValue("delegate.mappedStatement");
-		PageParameter page = null;
+		BasePageParameter page = null;
 		Object type = metaStatementHandler.getValue("delegate.boundSql.parameterObject");
-		if (PageParameter.class.isInstance(type)) {
-			page = (PageParameter) type;
+		if (BasePageParameter.class.isInstance(type)) {
+			page = (BasePageParameter) type;
 		}
 		// 只重写需要分页的sql语句。通过MappedStatement的ID匹配，默认重写以Page结尾的
 		// MappedStatement的sql
@@ -101,7 +102,7 @@ public class PaginationInterceptor implements Interceptor {
 		return invocation.proceed();
 	}
 
-	private String buildPageSql(String sql, PageParameter page, String dialect) {
+	private String buildPageSql(String sql, BasePageParameter page, String dialect) {
 		if (page != null) {
 			StringBuilder pageSql = new StringBuilder();
 			if ("mysql".equals(dialect)) {
@@ -133,7 +134,7 @@ public class PaginationInterceptor implements Interceptor {
 		// Templates.
 	}
 
-	public StringBuilder buildPageSqlForMysql(String sql, PageParameter page) {
+	public StringBuilder buildPageSqlForMysql(String sql, BasePageParameter page) {
 		StringBuilder pageSql = new StringBuilder(100);
 		
 		pageSql.append(sql);
@@ -141,7 +142,7 @@ public class PaginationInterceptor implements Interceptor {
 		return pageSql;
 	}
 
-	public StringBuilder buildPageSqlForOracle(String sql, PageParameter page) {
+	public StringBuilder buildPageSqlForOracle(String sql, BasePageParameter page) {
 		StringBuilder pageSql = new StringBuilder(100);
 		String beginrow = String.valueOf((page.getCurrentPage() - 1) * page.getPageSize());
 		String endrow = String.valueOf(page.getCurrentPage() * page.getPageSize());
@@ -163,7 +164,7 @@ public class PaginationInterceptor implements Interceptor {
 	 * @param page
 	 */
 	private void setPageParameter(String sql, Connection connection, MappedStatement mappedStatement, BoundSql boundSql,
-			PageParameter page) {
+			BasePageParameter page) {
 		// 记录总记录数
 		String countSql = "select count(0) as total from (" + sql + ")  tt";
 		PreparedStatement countStmt = null;
