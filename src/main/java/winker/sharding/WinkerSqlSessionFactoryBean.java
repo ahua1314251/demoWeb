@@ -1,3 +1,4 @@
+package winker.sharding;
 /**
  *    Copyright 2010-2015 the original author or authors.
  *
@@ -13,7 +14,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package winker.sharding;
+
 
 import static org.springframework.util.Assert.notNull;
 import static org.springframework.util.ObjectUtils.isEmpty;
@@ -51,6 +52,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.NestedIOException;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
+
+import winker.sharding.transaction.WinkerSpringManagedTransactionFactory;
 
 /**
  * {@code FactoryBean} that creates an MyBatis {@code SqlSessionFactory}.
@@ -441,7 +444,7 @@ public class WinkerSqlSessionFactoryBean implements FactoryBean<SqlSessionFactor
     }
 
     if (this.transactionFactory == null) {
-      this.transactionFactory = new SpringManagedTransactionFactory();
+      this.transactionFactory = new WinkerSpringManagedTransactionFactory();
     }
 
     configuration.setEnvironment(new Environment(this.environment, this.transactionFactory, this.dataSource));

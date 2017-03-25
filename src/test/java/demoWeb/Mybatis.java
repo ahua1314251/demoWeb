@@ -24,18 +24,22 @@ public class Mybatis {
 	@Autowired
 	WinkerUserService winkerUserService;
 	
-//	@Transactional(value="winkerTransactionManager")
+
 	@Test
 	public  void test() throws Exception{
 		WinkerUser record = new WinkerUser();
 		record.setId(11L);
 		record.setLoginId("12312");
+		
 		record.setEmail("23123123");
 		record.setPassword("123123");
 		record.setUserName("shanfu.liu18");
 		record.setAddress("qweqw");
 		record.setUpdateTime(new Date());
 		winkerUserService.updateUser(record,1234);
+//		record.setId(12L);
+//		winkerUserService.updateUser(record,321);
+//		winkerUserService.updateUser(record,1234);
 
 //		record.setId(12L);
 //		record.setUpdateTime(new Date());

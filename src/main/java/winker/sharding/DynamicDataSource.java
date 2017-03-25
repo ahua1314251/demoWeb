@@ -11,6 +11,7 @@ import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.datasource.WinkerDataSourceTransactionManager;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
+import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 import winker.sharding.Routing.ShardingHolder;
@@ -32,28 +33,32 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 //		dbNumber.set(1);
 //		return dbName + dbNumber.get();
 		a++;
-		System.out.println(this.getDbName()+0);
+		System.out.println(getDbName()+ShardingHolder.dbNumber.get());
 //		System.out.println("winkerDataSource"+a);
 		if(ShardingHolder.dbNumber.get() == null){
 			return "";
 		}else{
 			return this.getDbName()+ShardingHolder.dbNumber.get();
 		}
-		
-		
-		
-
 	}
 
 	@Override
 	public Connection getConnection() throws SQLException {
+		Connection conn =null ;
 	   javax.sql.DataSource targetDataSource = determineTargetDataSource();
- 	   Connection conn = targetDataSource.getConnection();
- 	   WinkerDataSourceTransactionManager.setConnectionHolder(targetDataSource, conn);
-		return conn;
+//	   if(TransactionSynchronizationManager.isSynchronizationActive()){
+// 	    conn = WinkerDataSourceTransactionManager.setConnectionHolder(targetDataSource);
+//	   }else{
+		   conn = targetDataSource.getConnection();
+//	   }
+	   return conn;
 	}
 	
-
+    public javax.sql.DataSource getTargetDataSource(){
+    	return determineTargetDataSource();
+    }
+	
+	
 	public String getDbName() {
 		return dbName;
 	}
