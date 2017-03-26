@@ -273,12 +273,14 @@ implements ResourceTransactionManager, InitializingBean {
 	@Override
 	protected void doRollback(DefaultTransactionStatus status) {
 		DataSourceTransactionObject txObject = (DataSourceTransactionObject) status.getTransaction();
-		Connection con = txObject.getWinkerConnectionHolder().getConnection();
+		Map<DataSource,Connection> conMap = txObject.getWinkerConnectionHolder().getConnectionMap();
 		if (status.isDebug()) {
-			logger.debug("Rolling back JDBC transaction on Connection [" + con + "]");
+			logger.debug("Rolling back JDBC transaction on Connection [" + conMap + "]");
 		}
 		try {
+			for(Connection con : conMap.values()){
 			con.rollback();
+			}
 		}
 		catch (SQLException ex) {
 			throw new TransactionSystemException("Could not roll back JDBC transaction", ex);
@@ -289,7 +291,7 @@ implements ResourceTransactionManager, InitializingBean {
 	protected void doSetRollbackOnly(DefaultTransactionStatus status) {
 		DataSourceTransactionObject txObject = (DataSourceTransactionObject) status.getTransaction();
 		if (status.isDebug()) {
-			logger.debug("Setting JDBC transaction [" + txObject.getWinkerConnectionHolder().getConnection() +
+			logger.debug("Setting JDBC transaction [" + txObject.getWinkerConnectionHolder().getConnectionMap() +
 					"] rollback-only");
 		}
 		txObject.setRollbackOnly();
@@ -305,12 +307,14 @@ implements ResourceTransactionManager, InitializingBean {
 		}
 
 		// Reset connection.
-		Connection con = txObject.getWinkerConnectionHolder().getConnection();
+		Map<DataSource,Connection> conMap = txObject.getWinkerConnectionHolder().getConnectionMap();
 		try {
+			for(Connection con : conMap.values()){
 			if (txObject.isMustRestoreAutoCommit()) {
 				con.setAutoCommit(true);
 			}
 			DataSourceUtils.resetConnectionAfterTransaction(con, txObject.getPreviousIsolationLevel());
+			}
 		}
 		catch (Throwable ex) {
 			logger.debug("Could not reset JDBC Connection after transaction", ex);
@@ -318,9 +322,11 @@ implements ResourceTransactionManager, InitializingBean {
 
 		if (txObject.isNewConnectionHolder()) {
 			if (logger.isDebugEnabled()) {
-				logger.debug("Releasing JDBC Connection [" + con + "] after transaction");
+				logger.debug("Releasing JDBC Connection [" + conMap + "] after transaction");
 			}
+			for(Connection con : conMap.values()){
 			DataSourceUtils.releaseConnection(con, this.dataSource);
+			}
 		}
 
 		txObject.getWinkerConnectionHolder().clear();
@@ -420,7 +426,10 @@ implements ResourceTransactionManager, InitializingBean {
 		public void rollbackToSavepoint(Object savepoint) throws TransactionException {
 			WinkerConnectionHolder conHolder = getConnectionHolderForSavepoint();
 			try {
-				conHolder.getConnection().rollback((Savepoint) savepoint);
+				Map<DataSource,Connection> conMap = conHolder.getConnectionMap();
+				for(Connection con : conMap.values()){
+					con.rollback((Savepoint) savepoint);
+				}
 			}
 			catch (Throwable ex) {
 				throw new TransactionSystemException("Could not roll back to JDBC savepoint", ex);
@@ -435,7 +444,11 @@ implements ResourceTransactionManager, InitializingBean {
 		public void releaseSavepoint(Object savepoint) throws TransactionException {
 			WinkerConnectionHolder conHolder = getConnectionHolderForSavepoint();
 			try {
-				conHolder.getConnection().releaseSavepoint((Savepoint) savepoint);
+				Map<DataSource,Connection> conMap = conHolder.getConnectionMap();
+				for(Connection con : conMap.values()){
+					con.releaseSavepoint((Savepoint) savepoint);
+				}
+				
 			}
 			catch (Throwable ex) {
 				logger.debug("Could not explicitly release JDBC savepoint", ex);

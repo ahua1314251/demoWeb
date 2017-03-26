@@ -12,7 +12,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.support.ResourceHolderSupport;
 import org.springframework.util.Assert;
 
-public class WinkerConnectionHolder extends  ResourceHolderSupport{
+public class WinkerConnectionHolder extends  ConnectionHolder{
 
 	private TransactionDefinition definition;
 	
@@ -34,15 +34,18 @@ public class WinkerConnectionHolder extends  ResourceHolderSupport{
 
 	
 	public WinkerConnectionHolder() {
+		super(new WinkerConnectionHandle(null));
 	}
 	
 	public WinkerConnectionHolder(WinkerDataSourceTransactionManager.DataSourceTransactionObject txObject ,TransactionDefinition definition) {
-           this.txObject = txObject;
-           this.definition = definition;
+		super(new WinkerConnectionHandle(null));   
+		this.txObject = txObject;
+        this.definition = definition;
 	}
 
 	public WinkerConnectionHolder(Connection con,DataSource targetDataSource) {
-           this.setConnection(con,targetDataSource);
+		super(new WinkerConnectionHandle(null));   
+		this.setConnection(con,targetDataSource);
 	}
 
 	/**
@@ -103,9 +106,9 @@ public class WinkerConnectionHolder extends  ResourceHolderSupport{
 	 * @see ConnectionHandle#getConnection()
 	 * @see #released()
 	 */
-//	public Connection getConnection() {
-//		return this.connectionMap.get(WinkerDataSourceUtils.getCurrentDataSource().get());
-//	}
+	public Connection getConnection() {
+		return this.connectionMap.get(WinkerDataSourceUtils.getCurrentDataSource().get());
+	}
 
 	/**
 	 * Return whether JDBC 3.0 Savepoints are supported.
